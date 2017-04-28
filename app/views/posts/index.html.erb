@@ -62,7 +62,6 @@
           <!-- accordion content -->
           <div class="ui comments"  data-index="1" style="display: none;">
             <!-- 댓글 목록 -->
-            <div id="comment_list<%=p.id%>" >
               <% p.comments.each do |c| %>
 
                 <div class="comment">
@@ -80,7 +79,6 @@
                   </div>
                 </div>
               <% end %>
-            </div>
             <!-- comment 쓰는 폼-->
             <form class="ui reply form" data-post_id="<%=p.id%>" action="/comments/create/<%=p.id%>" method="post">
               <div class="field comment_field" >
@@ -99,26 +97,9 @@
 
 <script>
 //ajax comment write and show
+//나중에 유용하게 사용될 스트링
+//str = ["<div class='comment'><div class='content'><a class='author'>", data.user_name, "</a><div class='metadata'><div class='date'>2 days ago</div></div><div class='text'>", data.content, "</div><div class='actions'><a class='reply'>Reply</a></div></div></div>"].join(" ");
 $(document).ready(function() {
-  $('.new_comment').click(function(e) {
-    const post_id = $(this).data("post_id");
-    const comment_area = $('.comment_area' + post_id);
-    e.preventDefault();
-    $.ajax({
-      method: "POST",
-      url: "/comments/create/" + post_id,
-      data: {
-        content: comment_area.val()
-      },
-      dataType: "json",
-      success: function(data) {
-        var str;
-        console.log(data);
-        str = ["<div class='comment'><div class='content'><a class='author'>", data.user_name, "</a><div class='metadata'><div class='date'>2 days ago</div></div><div class='text'>", data.content, "</div><div class='actions'><a class='reply'>Reply</a></div></div></div>"].join(" ");
-        $("#comment_list" + post_id).append(str);
-        return;
-      }
-    });
   });
 });
 </script>
