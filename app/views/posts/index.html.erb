@@ -15,12 +15,12 @@
             <div class="content">
               <a class="header"></a>
               <div class="meta">
-                <span><i class="calendar icon"></i> <%= p.created_at %> <i class="user icon"></i> <%= p.user.name %>
+                <span><i class="calendar icon"></i> <%= p.created_at %> <i class="user icon"></i> someone
                 <i class="tag icon"></i> Tags </span>
               </div>
               <div class="description" align="justify">
                 <div style="float: left; width: 6%;">
-                  <img src="<%= image_path "#{p.user.name}.jpg" %>" height="100%" width="100%">
+                  <img src="<%= image_path "elliot.jpg" %>" height="100%" width="100%">
                 </div>
                 <div style="float: left; width: 4%;">
                   &nbsp;
@@ -34,18 +34,11 @@
 
           <!--좋아요 버튼 -->
           <div class="ui labeled button like_btn" tabindex="0">
-            <% if p.likers.include?(current_user) %>
-              <button class="ui red button " onclick="location.href='/likes/destroy/<%=p.likes.where(user_id: current_user.id).first.id %>'">
+              <button class="ui red button " onclick="location.href='/'">
                 <i class="heart icon"></i> Like
               </button>
               <a class="ui basic red left pointing label">
-              <% else %>
-                <button class="ui button" onclick="location.href='/likes/create/<%=p.id%>'">
-                  <i class="heart icon"></i> Like
-                </button>
-                <a class="ui basic left pointing label">
-                <% end %>
-                <%= p.likes.count %>
+		0
                 </a>
           </div>
 
@@ -55,30 +48,27 @@
               <i class="comment icon"></i> Replies
             </div>
             <a class="ui basic left pointing label">
-              <%= p.comments.count %>
+		0
             </a>
           </div>
 
           <!-- accordion content -->
           <div class="ui comments"  data-index="1" style="display: none;">
             <!-- 댓글 목록 -->
-              <% p.comments.each do |c| %>
-
                 <div class="comment">
                   <div class="content">
-                    <a class="author"> <%= c.user.name %> </a>
+                    <a class="author"> someone_else </a>
                     <div class="metadata">
                       <div class="date">2 days ago</div>
                     </div>
                     <div class="text">
-                      <%= c.content %>
+			This is Comment
                     </div>
                     <div class="actions">
                       <a class="reply">Reply</a>
                     </div>
                   </div>
                 </div>
-              <% end %>
             <!-- comment 쓰는 폼-->
             <form class="ui reply form" data-post_id="<%=p.id%>" action="/comments/create/<%=p.id%>" method="post">
               <div class="field comment_field" >

@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts=Post.all
   end
 
   # GET /posts/1
@@ -22,11 +22,6 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new
-    @post.user_id = current_user.id
-    @post.content = params[:content]
-    @post.save
-    redirect_to "/posts"
   end
 
   # PATCH/PUT /posts/1
@@ -37,7 +32,6 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
-    @post.destroy
   end
 
   private
