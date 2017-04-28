@@ -13,14 +13,14 @@
         <div class="ui items">
           <div class="item" align="left">
             <div class="content">
-              <a class="header">제목을 넣어주세요</a>
+              <a class="header"></a>
               <div class="meta">
                 <span><i class="calendar icon"></i> <%= p.created_at %> <i class="user icon"></i> <%= p.user.name %>
                 <i class="tag icon"></i> Tags </span>
               </div>
               <div class="description" align="justify">
                 <div style="float: left; width: 6%;">
-                  <img src="<%= image_path "#{p.user.id}.png" %>" height="100%" width="100%">
+                  <img src="<%= image_path "#{p.user.name}.jpg" %>" height="100%" width="100%">
                 </div>
                 <div style="float: left; width: 4%;">
                   &nbsp;

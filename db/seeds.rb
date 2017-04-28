@@ -6,9 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.create email: 'admin1@likelion.com', password: "123456", name: "문재인"
-User.create email: 'admin2@likelion.com', password: "123456", name: "안철수"
-User.create email: 'admin3@likelion.com', password: "123456", name: "홍준표"
-User.create email: 'admin4@likelion.com', password: "123456", name: "유승민"
-User.create email: 'admin5@likelion.com', password: "123456", name: "심상정"
+User.create email: 'admin1@likelion.com', password: "123456", name: "elliot"
+User.create email: 'admin2@likelion.com', password: "123456", name: "jenny"
+User.create email: 'admin3@likelion.com', password: "123456", name: "joe"
+User.create email: 'admin4@likelion.com', password: "123456", name: "stevie"
+User.create email: 'admin5@likelion.com', password: "123456", name: "matt"
 
