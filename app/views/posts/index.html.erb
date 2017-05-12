@@ -117,11 +117,13 @@ $(document).ready(function() {
   $('.like_btn').click(function(e) {
     const post_id = $(this).data("post_id");
     const like_btn = $(this)
-      e.preventDefault();
+    e.preventDefault();
     $.ajax({
       method: "get",
       url: "likes/toggle/" + post_id,
       success: function(data){
+        //$(this).toggleClass("red");
+        //compare the commented line with below 2 lines
         like_btn.toggleClass("red");
         like_btn.next().toggleClass("red");
         return;
