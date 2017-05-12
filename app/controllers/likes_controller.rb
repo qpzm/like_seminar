@@ -1,22 +1,24 @@
 class LikesController < ApplicationController
-    def index
+  def toggle
+    likes = Like.where(user_id: current_user.id, post_id: params[:post_id])
+    if likes.empty?
+      @like=Like.new
+      @like.user_id=current_user.id
+      @like.post_id=params[:post_id]
+      @like.save
+    else
+      likes.take.destroy
     end
-    def show
-	redirect_to :back
-    end
-    def new
-	redirect_to "/likes/create"
-    end
-    def create
-	@like=Like.new
-	@like.user_id=current_user.id
-	@like.post_id=params[:post_id]
-	@like.save
-	redirect_to :root
-    end
-    def destroy
-	@like=Like.find(params[:like_id])
-	@like.destroy
-	redirect_to :back
-    end
+    render json: {}
+  end
+  #def create
+    #@like=Like.new
+    #@like.user_id=current_user.id
+    #@like.post_id=params[:post_id]
+    #@like.save
+  #end
+  #def destroy
+    #@like=Like.find(params[:like_id])
+    #@like.destroy
+  #end
 end

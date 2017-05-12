@@ -33,20 +33,14 @@
           </div><!-- end of Post Content -->
 
           <!--좋아요 버튼 -->
-          <div class="ui labeled button like_btn" tabindex="0">
-            <% if p.likers.include?(current_user) %>
-              <button class="ui red button " onclick="location.href='/likes/destroy/<%=p.likes.where(user_id: current_user.id).first.id %>'">
-                <i class="heart icon"></i> Like
-              </button>
-              <a class="ui basic red left pointing label">
-              <% else %>
-                <button class="ui button" onclick="location.href='/likes/create/<%=p.id%>'">
-                  <i class="heart icon"></i> Like
-                </button>
-                <a class="ui basic left pointing label">
-                <% end %>
-                <%= p.likes.count %>
-                </a>
+          <% @maybe_red =  p.likers.include?(current_user) ? 'red' : '' %>
+          <div class="ui labeled button" tabindex="0">
+            <button class="ui <%= @maybe_red %> button like_btn" data-post_id="<%=p.id%>">
+              <i class="heart icon"></i> Like
+            </button>
+            <a class="ui basic <%= @maybe_red %>  left pointing label">
+              <%= p.likes.count %>
+            </a>
           </div>
 
           <!-- 댓글 보기 버튼 -->
@@ -116,6 +110,20 @@ $(document).ready(function() {
         console.log(data);
         str = ["<div class='comment'><div class='content'><a class='author'>", data.user_name, "</a><div class='metadata'><div class='date'>2 days ago</div></div><div class='text'>", data.content, "</div><div class='actions'><a class='reply'>Reply</a></div></div></div>"].join(" ");
         $("#comment_list" + post_id).append(str);
+        return;
+      }
+    });
+  });
+  $('.like_btn').click(function(e) {
+    const post_id = $(this).data("post_id");
+    const like_btn = $(this)
+      e.preventDefault();
+    $.ajax({
+      method: "get",
+      url: "likes/toggle/" + post_id,
+      success: function(data){
+        like_btn.toggleClass("red");
+        like_btn.next().toggleClass("red");
         return;
       }
     });
